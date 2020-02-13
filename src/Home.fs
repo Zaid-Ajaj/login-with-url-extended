@@ -61,7 +61,7 @@ let init() =
         defaultState, Router.navigate("login", HistoryMode.ReplaceState)
 
     | Url.Logout ->
-        defaultState, Router.navigate("/")
+        defaultState, Router.navigate("/", HistoryMode.ReplaceState)
 
     | Url.NotFound ->
         { defaultState with CurrentPage = Page.NotFound }, Cmd.none
