@@ -40,7 +40,6 @@ type Msg =
     | LoginMsg of Login.Msg
     | OverviewMsg of Overview.Msg
     | UrlChanged of Url
-    | Logout
 
 let init() =
     let initialUrl = parseUrl (Router.currentUrl())
@@ -66,8 +65,6 @@ let init() =
 
     | Url.NotFound ->
         { defaultState with CurrentPage = Page.NotFound }, Cmd.none
-
-
 
 let update (msg: Msg) (state: State) =
     match msg, state.CurrentPage with
