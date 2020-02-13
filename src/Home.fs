@@ -58,7 +58,7 @@ let init() =
         { defaultState with CurrentPage = nextPage }, Cmd.map LoginMsg loginCmd
 
     | Url.Overview ->
-        defaultState, Router.navigate("login")
+        defaultState, Router.navigate("login", HistoryMode.ReplaceState)
 
     | Url.Logout ->
         defaultState, Router.navigate("/")
@@ -93,7 +93,7 @@ let update (msg: Msg) (state: State) =
 
         | Url.Overview ->
             match state.User with
-            | Anonymous ->  state, Router.navigate("login")
+            | Anonymous -> state, Router.navigate("login", HistoryMode.ReplaceState)
             | LoggedIn user ->
                 let overview, overviewCmd = Overview.init user
                 show (Page.Overview overview), Cmd.map OverviewMsg overviewCmd
